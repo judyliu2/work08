@@ -11,11 +11,12 @@ char * get_binary(int);
 int main(){
   int err;
   struct stat meta;
-  err = stat("sample", &meta);  
+  char target_file[] = "sample";
+
+  err = stat(target_file, &meta);
   
-  //printf("Size of file: %d\n", (int) meta.st_size); // off_t
-  //printf("Mode of file: %o\n", (int) meta.st_mode); // st_mode
-  printf("Time of access: %s\n", ctime(&(meta.st_atime)) ); // 
+  printf("File details for %s\n", target_file);
+  printf("Time of access: %s\n", ctime(&(meta.st_atime)) );
 
   print_size(meta.st_size);
   print_permissions(meta.st_mode);
